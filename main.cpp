@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <fstream>
 
 class passData
@@ -26,20 +27,24 @@ class passData
 
     }
 
-    // void fetchPasswords()
-    // {
-    //     std::ifstream file("passwords.txt");
-    //     if(file.is_open())
-    //     {
-    //         std::string site, password;
+    void fetchPasswords()
+    {
+        std::ifstream file("passwords.txt");
+        if(file.is_open())
+        {
+            std::string site, password, line;
+            while(std::getline(file, line))
+            {
+                std::stringstream ss(line);
+                ss >> site >> password;
+            }
+        }
+        else
+        {
+            std::cerr << "No go" <<'\n';
+        }
 
-    //     }
-    //     else
-    //     {
-    //         std::cerr << "No go" <<'\n'
-    //     }
-
-    // }
+    }
 
 }
 
