@@ -2,16 +2,46 @@
 #include <sstream>
 #include <fstream>
 
-class passData
+class passwordManager
 {
     public:
 
+    void displayMenu()
+    {
+        do
+        {
+            std::cout<<"Enter a choice" << '\n';
+            std::cin >> check;
+
+            switch(check)
+            {
+                case 1:
+                    std::cout<<"Enter site name" << '\n';
+                    std::cin >>site;
+                    std::cout<<"Enter site password" << '\n';
+                    std::cin >> password;
+                    getPassword(site,password);
+                    break;
+                case 2:
+                    std::cout<<"Your passwords will be read as followed" << '\n';
+                    fetchPasswords();
+                    break;
+                case 3:
+                    std::cout<<"Program will be exited now" << '\n';
+                    break;
+            }
+
+
+            
+        }while(check != 3);
+    }
 
 
 
     private:
     std::string site;
     std::string password;
+    int check;
 
     void getPassword(const std::string& site, const std::string& password)
     {
@@ -37,21 +67,22 @@ class passData
             {
                 std::stringstream ss(line);
                 ss >> site >> password;
+                std::cout << " Site " << site << " Password " << password << '\n';
             }
         }
         else
         {
             std::cerr << "No go" <<'\n';
         }
-
     }
 
-}
+};
 
 
 
 int main()
 {
-
+    passwordManager dataobj;
+    dataobj.displayMenu();
 }
 
